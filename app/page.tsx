@@ -1,19 +1,24 @@
-import { PublicHeader } from "@/components/public-header"
+﻿import { PublicHeader } from "@/components/public-header"
 import { PublicFooter } from "@/components/public-footer"
 import { EventCard } from "@/components/event-card"
 import { EventFilters } from "@/components/event-filters"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { mockEvents } from "@/lib/types"
-import { 
-  Calendar, 
-  Users, 
-  Award, 
+import {
+  Calendar,
+  Users,
+  Award,
   ArrowRight,
   Sparkles,
   Building,
-  Monitor,
-  Wifi
+  GraduationCap,
+  BookOpen,
+  Wrench,
+  Mic,
+  FileText,
+  Handshake,
+  CalendarPlus,
 } from "lucide-react"
 import Link from "next/link"
 
@@ -24,13 +29,13 @@ export default function HomePage() {
   return (
     <div className="min-h-screen flex flex-col bg-background">
       <PublicHeader />
-      
+
       <main className="flex-1">
         {/* Hero Section */}
         <section className="relative overflow-hidden bg-gradient-to-br from-primary via-primary to-primary/90 py-20 lg:py-28">
           <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-10" />
           <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-accent/20 to-transparent" />
-          
+
           <div className="container mx-auto px-4 relative">
             <div className="max-w-3xl">
               <Badge className="mb-4 bg-accent text-accent-foreground border-0">
@@ -51,7 +56,11 @@ export default function HomePage() {
                   </Button>
                 </Link>
                 <Link href="/organizador">
-                  <Button size="lg" variant="outline" className="border-primary-foreground/30 text-primary-foreground hover:bg-primary-foreground/10 hover:text-primary-foreground gap-2">
+                  <Button
+                    size="lg"
+                    className="gap-2 bg-accent text-accent-foreground hover:bg-accent/90 shadow-lg shadow-accent/30"
+                  >
+                    <CalendarPlus className="h-4 w-4" />
                     Criar evento
                   </Button>
                 </Link>
@@ -101,12 +110,8 @@ export default function HomePage() {
           <div className="container mx-auto px-4">
             <div className="flex items-center justify-between mb-8">
               <div>
-                <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-2">
-                  Eventos em destaque
-                </h2>
-                <p className="text-muted-foreground">
-                  Os eventos mais procurados no momento
-                </p>
+                <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-2">Eventos em destaque</h2>
+                <p className="text-muted-foreground">Os eventos mais procurados no momento</p>
               </div>
               <Link href="#eventos">
                 <Button variant="ghost" className="gap-2">
@@ -128,35 +133,36 @@ export default function HomePage() {
         <section className="py-16 bg-muted/30">
           <div className="container mx-auto px-4">
             <div className="text-center mb-10">
-              <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-2">
-                Explore por categoria
-              </h2>
-              <p className="text-muted-foreground">
-                Encontre eventos do seu interesse
-              </p>
+              <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-2">Explore por categoria</h2>
+              <p className="text-muted-foreground">Encontre eventos do seu interesse</p>
             </div>
 
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
               {[
-                { name: "Congressos", icon: "🎓", count: 12 },
-                { name: "Seminários", icon: "📚", count: 8 },
-                { name: "Workshops", icon: "🛠️", count: 15 },
-                { name: "Palestras", icon: "🎤", count: 23 },
-                { name: "Minicursos", icon: "📝", count: 18 },
-                { name: "Extensão", icon: "🤝", count: 7 },
-              ].map((category) => (
-                <Link
-                  key={category.name}
-                  href={`/categorias/${category.name.toLowerCase()}`}
-                  className="group p-6 bg-card rounded-lg border border-border hover:border-primary/30 hover:shadow-md transition-all text-center"
-                >
-                  <div className="text-3xl mb-3">{category.icon}</div>
-                  <h3 className="font-semibold text-foreground group-hover:text-primary transition-colors">
-                    {category.name}
-                  </h3>
-                  <p className="text-sm text-muted-foreground">{category.count} eventos</p>
-                </Link>
-              ))}
+                { name: "Congressos", icon: GraduationCap, count: 12 },
+                { name: "Seminários", icon: BookOpen, count: 8 },
+                { name: "Workshops", icon: Wrench, count: 15 },
+                { name: "Palestras", icon: Mic, count: 23 },
+                { name: "Minicursos", icon: FileText, count: 18 },
+                { name: "Extensão", icon: Handshake, count: 7 },
+              ].map((category) => {
+                const Icon = category.icon
+                return (
+                  <Link
+                    key={category.name}
+                    href={`/categorias/${category.name.toLowerCase()}`}
+                    className="group p-6 bg-card rounded-lg border border-border hover:border-primary/30 hover:shadow-md transition-all text-center"
+                  >
+                    <div className="mb-3 inline-flex h-12 w-12 items-center justify-center rounded-full bg-primary/10 text-primary">
+                      <Icon className="h-6 w-6" />
+                    </div>
+                    <h3 className="font-semibold text-foreground group-hover:text-primary transition-colors">
+                      {category.name}
+                    </h3>
+                    <p className="text-sm text-muted-foreground">{category.count} eventos</p>
+                  </Link>
+                )
+              })}
             </div>
           </div>
         </section>
@@ -165,12 +171,8 @@ export default function HomePage() {
         <section id="eventos" className="py-16 bg-background scroll-mt-20">
           <div className="container mx-auto px-4">
             <div className="mb-8">
-              <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-2">
-                Todos os eventos
-              </h2>
-              <p className="text-muted-foreground">
-                Encontre e participe dos eventos da UEPA
-              </p>
+              <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-2">Todos os eventos</h2>
+              <p className="text-muted-foreground">Encontre e participe dos eventos da UEPA</p>
             </div>
 
             <div className="mb-8">
