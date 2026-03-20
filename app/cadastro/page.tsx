@@ -49,7 +49,7 @@ const cursos = [
   "Engenharia Civil",
   "Engenharia de Computação",
   "Engenharia de Produção",
-  "Farmácia",
+  "Engenharia de Software",
   "Fisioterapia",
   "Geografia",
   "História",
