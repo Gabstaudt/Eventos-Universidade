@@ -15,6 +15,7 @@ import {
   TrendingUp,
   Eye,
   MoreHorizontal,
+  Newspaper,
 } from "lucide-react"
 import {
   DropdownMenu,
@@ -275,6 +276,12 @@ export default function OrganizerDashboard() {
                 <Button variant="outline" className="w-full justify-start gap-3">
                   <UserCheck className="h-4 w-4 text-primary" />
                   Realizar check-in
+                </Button>
+              </Link>
+              <Link href="/organizador/noticias/nova">
+                <Button variant="outline" className="w-full justify-start gap-3">
+                  <Newspaper className="h-4 w-4 text-primary" />
+                  Publicar notícia
                 </Button>
               </Link>
             </div>

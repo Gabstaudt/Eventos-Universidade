@@ -2,9 +2,10 @@
 import { PublicFooter } from "@/components/public-footer"
 import { EventCard } from "@/components/event-card"
 import { EventFilters } from "@/components/event-filters"
+import { NewsCard } from "@/components/news-card"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
-import { mockEvents } from "@/lib/types"
+import { mockEvents, mockNews } from "@/lib/types"
 import {
   Calendar,
   Users,
@@ -25,6 +26,7 @@ import Link from "next/link"
 export default function HomePage() {
   const featuredEvents = mockEvents.slice(0, 3)
   const allEvents = mockEvents
+  const featuredNews = mockNews.slice(0, 3)
 
   return (
     <div className="min-h-screen flex flex-col bg-background">
@@ -189,6 +191,37 @@ export default function HomePage() {
               <Button variant="outline" size="lg">
                 Carregar mais eventos
               </Button>
+            </div>
+          </div>
+        </section>
+
+        {/* News Section */}
+        <section className="border-t border-border bg-muted/30 py-16">
+          <div className="container mx-auto px-4">
+            <div className="mb-8 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+              <div>
+                <Badge className="mb-3 border-0 bg-primary/10 text-primary hover:bg-primary/10">
+                  Comunicação institucional
+                </Badge>
+                <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-2">
+                  Notícias e comunicados
+                </h2>
+                <p className="text-muted-foreground max-w-2xl">
+                  Acompanhe atualizações dos eventos, mudanças de programação e destaques da UEPA.
+                </p>
+              </div>
+              <Link href="/noticias">
+                <Button variant="outline" className="gap-2">
+                  Ver notícias
+                  <ArrowRight className="h-4 w-4" />
+                </Button>
+              </Link>
+            </div>
+
+            <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+              {featuredNews.map((article) => (
+                <NewsCard key={article.id} article={article} />
+              ))}
             </div>
           </div>
         </section>

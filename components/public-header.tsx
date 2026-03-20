@@ -45,6 +45,12 @@ export function PublicHeader() {
             Categorias
           </Link>
           <Link
+            href="/noticias"
+            className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
+          >
+            Notícias
+          </Link>
+          <Link
             href="/sobre"
             className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
           >
@@ -145,6 +151,13 @@ export function PublicHeader() {
               onClick={() => setMobileMenuOpen(false)}
             >
               Categorias
+            </Link>
+            <Link
+              href="/noticias"
+              className="px-3 py-2 text-sm font-medium text-foreground rounded-md hover:bg-muted"
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              Notícias
             </Link>
             <Link
               href="/sobre"

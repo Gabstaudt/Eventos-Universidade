@@ -29,6 +29,7 @@ import {
   X,
   QrCode,
   ChevronDown,
+  Newspaper,
 } from "lucide-react"
 import { cn } from "@/lib/utils"
 
@@ -36,6 +37,7 @@ const navigation = [
   { name: "Dashboard", href: "/organizador", icon: LayoutDashboard },
   { name: "Meus Eventos", href: "/organizador/eventos", icon: Calendar },
   { name: "Criar Evento", href: "/organizador/eventos/novo", icon: CalendarPlus },
+  { name: "Notícias", href: "/organizador/noticias", icon: Newspaper },
   { name: "Participantes", href: "/organizador/participantes", icon: Users },
   { name: "Inscrições", href: "/organizador/inscricoes", icon: UserCheck },
   { name: "Certificados", href: "/organizador/certificados", icon: Award },

@@ -3,6 +3,7 @@
 export type EventStatus = 'rascunho' | 'publicado' | 'encerrado' | 'cancelado'
 export type EventModality = 'presencial' | 'online' | 'hibrido'
 export type EventCategory = 'congresso' | 'seminario' | 'workshop' | 'palestra' | 'minicurso' | 'extensao' | 'outro'
+export type NewsStatus = 'rascunho' | 'publicada'
 
 export type UserRole = 'participante' | 'organizador'
 export type OrganizerRole = 'administrador' | 'organizador' | 'apoio' | 'secretaria'
@@ -107,6 +108,22 @@ export interface CertificateTemplate {
   nome: string
   layout: string
   camposDinamicos: string[]
+}
+
+export interface NewsArticle {
+  id: string
+  titulo: string
+  resumo: string
+  conteudo: string
+  imagemCapa?: string
+  categoria: string
+  destaque: boolean
+  status: NewsStatus
+  eventoRelacionadoId?: string
+  autorId: string
+  publishedAt: Date
+  createdAt: Date
+  updatedAt: Date
 }
 
 // Dados mockados para demonstração
@@ -299,6 +316,56 @@ export const mockRegistrations: Registration[] = [
   },
 ]
 
+export const mockNews: NewsArticle[] = [
+  {
+    id: '1',
+    titulo: 'UEPA abre calendário de eventos acadêmicos do primeiro semestre',
+    resumo: 'A programação reúne congressos, seminários e oficinas com foco em inovação, extensão e produção científica.',
+    conteudo:
+      'A Universidade do Estado do Pará iniciou a divulgação do calendário oficial de eventos acadêmicos do primeiro semestre. A agenda contempla ações presenciais, online e híbridas, com destaque para iniciativas de pesquisa, extensão e formação continuada. A proposta é ampliar a participação da comunidade acadêmica e fortalecer a circulação de conhecimento entre os campi.',
+    imagemCapa: '/placeholder-event-1.jpg',
+    categoria: 'Institucional',
+    destaque: true,
+    status: 'publicada',
+    autorId: '1',
+    publishedAt: new Date('2026-03-18'),
+    createdAt: new Date('2026-03-16'),
+    updatedAt: new Date('2026-03-18'),
+  },
+  {
+    id: '2',
+    titulo: 'Congresso de Iniciação Científica terá trilha especial sobre bioeconomia amazônica',
+    resumo: 'Nova trilha temática vai reunir pesquisadores, estudantes e convidados externos em torno de soluções regionais.',
+    conteudo:
+      'A próxima edição do Congresso de Iniciação Científica da UEPA terá uma trilha exclusiva dedicada à bioeconomia amazônica. A programação incluirá mesas-redondas, apresentações de trabalhos e encontros com pesquisadores convidados. A iniciativa busca conectar ciência aplicada, sustentabilidade e desenvolvimento regional.',
+    imagemCapa: '/placeholder-event-3.jpg',
+    categoria: 'Pesquisa',
+    destaque: true,
+    status: 'publicada',
+    eventoRelacionadoId: '1',
+    autorId: '1',
+    publishedAt: new Date('2026-03-15'),
+    createdAt: new Date('2026-03-14'),
+    updatedAt: new Date('2026-03-15'),
+  },
+  {
+    id: '3',
+    titulo: 'Workshop de desenvolvimento web amplia vagas após alta procura',
+    resumo: 'Organização liberou novo lote de inscrições para atender à demanda de estudantes da área de tecnologia.',
+    conteudo:
+      'Após o preenchimento rápido das vagas iniciais, o Workshop de Desenvolvimento Web Moderno terá capacidade ampliada. A decisão foi tomada para atender a procura de estudantes interessados em práticas com React, Next.js e arquitetura de interfaces. As novas vagas serão liberadas mediante atualização do sistema de inscrições.',
+    imagemCapa: '/placeholder-event-2.jpg',
+    categoria: 'Eventos',
+    destaque: false,
+    status: 'publicada',
+    eventoRelacionadoId: '2',
+    autorId: '1',
+    publishedAt: new Date('2026-03-12'),
+    createdAt: new Date('2026-03-11'),
+    updatedAt: new Date('2026-03-12'),
+  },
+]
+
 export const categoryLabels: Record<EventCategory, string> = {
   congresso: 'Congresso',
   seminario: 'Seminário',
@@ -334,4 +401,9 @@ export const organizerRoleLabels: Record<OrganizerRole, string> = {
   organizador: 'Organizador',
   apoio: 'Apoio / Staff',
   secretaria: 'Certificados / Secretaria',
+}
+
+export const newsStatusLabels: Record<NewsStatus, string> = {
+  rascunho: 'Rascunho',
+  publicada: 'Publicada',
 }
